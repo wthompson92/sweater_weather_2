@@ -4,7 +4,6 @@ class Api::V1::SessionsController < ApplicationController
     user = User.find_by(email: params[:ema])
     if user && user.authenticate(params[:password])
     session[:user_id] = user.id
-    render :json :
   end
 end
 end
