@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
+
   namespace :api do
     namespace :v1 do
       get '/forecast', to: 'forecasts#show'
