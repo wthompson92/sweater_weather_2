@@ -9,3 +9,4 @@ class Api::V1::GifsController < ApplicationController
   def search_params
     params.permit(:location)
   end
+end 
