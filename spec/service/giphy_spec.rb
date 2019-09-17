@@ -4,12 +4,13 @@ describe 'GiphyService' do
 
   before :each do
     giphy_connection = Giphy.new("Sunny")
-    @parsed = giphy_connection.get_json[:data].first[:url]
+    @gifs = giphy_connection.gifs
 
   end
 
-  it "Can get a URL" do
-    expect(@parsed).not_to be_empty
+  it "Can get a connection" do
+    expect(@gifs).not_to be_empty
+    binding.pry
 
   end
 end

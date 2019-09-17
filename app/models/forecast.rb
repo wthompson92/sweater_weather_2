@@ -43,4 +43,43 @@ class Forecast
     end
     return_array
   end
+
+  def get_miniute_weather
+    darksky_connection = DarkSky.new(coordscoords)
+    darksky_connection.minutely
+  end
+
+  def arrival_time
+     get_duration + Time.now.to_i
+    times = []
+    get_miniute_weather.map do |data|
+      times << data[:time]
+    end
+    nearest_weather_time = times.min_by{|x| (arrival_time-x).abs}
+      darksky_connection = DarkSky.new(get_coords)
+      darksky_connection.weather_at_time(nearest_weather_time)
+      binding.pry
+  end
+
+
+    def current_weather
+      forecast[:currently]
+    end
+
+    def current_weather
+      forecast[:currently]
+    end
+
+    def hourly
+      forecast[:hourly]
+    end
+
+
+    def daily
+      forecast[:daily]
+    end
+
+    def minutely
+      forecast[:minutely][:data]
+    end
 end

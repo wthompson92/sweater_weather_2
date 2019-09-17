@@ -3,31 +3,27 @@ class DarkSky
   def initialize(coords)
     @lat = coords[:lat]
     @long = coords[:lng]
-    @key = ENV["DARK_SKY_KEY"]
   end
 
-  def conn
-    conn = Faraday.new(url: "https://api.darksky.net/forecast/#{@key}/#{@lat},#{@long}") do |faraday|
-      faraday.adapter Faraday.default_adapter
+  def forecast
+    key =  ENV["DARK_SKY_KEY"]
+    get_json("/forecast/#{key}/#{@lat},#{@long}")
+  end
+
+  def weather_at_time(time)
+    key = ENV["DARK_SKY_KEY"]
+    get_json("/forecast/#{key}/#{@lat},#{@long},#{time}")
+  end
+
+  private
+    def conn
+      conn = Faraday.new(url: "https://api.darksky.net") do |faraday|
+        faraday.adapter Faraday.default_adapter
+      end
     end
-  end
 
-  def get_json
-    response = conn.get
-    JSON.parse(response.body, symbolize_names: true)
-  end
-
-
-  def current_weather
-    get_json[:currently]
-  end
-
-  def hourly
-    get_json[:hourly]
-  end
-
-  def daily
-    get_json[:daily]
-  end
-
+    def get_json(url)
+      response = conn.get(url)
+      JSON.parse(response.body, symbolize_names: true)
+    end
 end
