@@ -4,20 +4,21 @@ class Unsplash
     @location = location
   end
 
-  def photo
-    get_json[:results].first[:urls][:raw]
+  def search_photos
+    get_json("/search/photos")
   end
 
+  private
   def conn
-     @_conn ||= Faraday.new(url: "https://api.unsplash.com/search/photos") do |faraday|
-       faraday.params["client_id"] = ENV['UNSPLASH_KEY']
-       faraday.params["query"] = "#{@location}"
-       faraday.adapter Faraday.default_adapter
-     end
-   end
+    conn = Faraday.new(url: "https://api.unsplash.com") do |faraday|
+      faraday.params["client_id"] = ENV['UNSPLASH_KEY']
+      faraday.params["query"] = "#{@location}"
+      faraday.adapter Faraday.default_adapter
+    end
+  end
 
-   def get_json
-       response = conn.get
-       JSON.parse(response.body, symbolize_names: true)
-   end
+  def get_json(url)
+    response = conn.get(url)
+    JSON.parse(response.body, symbolize_names: true)
+  end
 end

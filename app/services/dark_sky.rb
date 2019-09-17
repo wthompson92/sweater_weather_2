@@ -16,6 +16,7 @@ class DarkSky
   end
 
   private
+  
     def conn
       conn = Faraday.new(url: "https://api.darksky.net") do |faraday|
         faraday.adapter Faraday.default_adapter
