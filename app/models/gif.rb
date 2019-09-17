@@ -3,7 +3,6 @@ class Gif
 
   def initialize(location)
     @location = location
-    @id = 1
   end
 
   def coords

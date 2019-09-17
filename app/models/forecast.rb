@@ -24,8 +24,6 @@ class Forecast
   end
 
 
-
-  #
   # def arrival_time
   #    get_duration + Time.now.to_i
   #   times = []

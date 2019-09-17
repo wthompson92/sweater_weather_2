@@ -5,7 +5,7 @@ RSpec.describe "Forecast" do
     @forecast = Forecast.new(coords)
   end
 
-  it "Can get a faraday object" do
+  it "Can get forecast" do
     expect(@forecast.forecast.keys).to match_array([:currently, :daily, :flags, :hourly, :latitude, :longitude, :minutely, :offset, :timezone])
   end
 
