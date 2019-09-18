@@ -419,25 +419,25 @@
         null
       ],
       "/Users/willthompson/turing/mod_3/projects/sweater_weather_2/app/controllers/api/v1/users_controller.rb": [
-        0,
+        1,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        2,
+        2,
+        2,
+        2,
         null,
-        0,
-        0,
-        0,
         null,
         0,
         null,
-        0,
-        0,
-        0,
-        0
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null
       ],
       "/Users/willthompson/turing/mod_3/projects/sweater_weather_2/app/controllers/api/v1/sessions_controller.rb": [
         0,
@@ -472,6 +472,6 @@
         0
       ]
     },
-    "timestamp": 1568838280
+    "timestamp": 1568838419
   }
 }
