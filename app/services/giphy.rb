@@ -8,6 +8,10 @@ class Giphy
     get_json("/v1/gifs/search")
   end
 
+  def photo_url
+    gifs[:data].first[:url]
+  end
+
   private
   def conn
     conn = Faraday.new(url: "https://api.giphy.com") do |faraday|

@@ -1,37 +1,38 @@
-
 class Forecast
-  def initialize(coords)
-    @lat = coords[:lat]
-    @long = coords[:lng]
-    @coords = coords
+  def initialize(weather_data)
+    @currently = weather_data[:currently]
+    @hourly = weather_data[:hourly][:data]
+    @daily = weather_data[:daily][:data]
   end
 
-  def forecast
-    dark_sky_connection = DarkSky.new(@coords)
-    dark_sky_connection.forecast
-  end
 
   def current_weather
-    forecast[:currently]
+   filter = @currently.keep_if do |k,v|
+     ([:time, :summary,:icon, :temperature, :humidity,:uvIndex,:visibility]).include?(k)
+    end
   end
 
-  def minutely_weather
-    forecast[:minutely][:data]
-  end
+  def eight_hour_forecast
 
-  def hourly_weather
-    forecast[:hourly][:data]
-  end
-
-
-  # def arrival_time
-  #    get_duration + Time.now.to_i
-  #   times = []
-  #   get_miniute_weather.map do |data|
-  #     times << data[:time]
-  #   end
-  #   nearest_weather_time = times.min_by{|x| (arrival_time-x).abs}
-  #     darksky_connection = DarkSky.new(get_coords)
-  #     darksky_connection.weather_at_time(nearest_weather_time)
-  #     binding.pry
+   filter = @hourly[0..7].map do |hour|
+     hour.keep_if do |k,v|
+     ([:time, :icon, :summary]).include?(k)
+   end
  end
+  end
+
+  def eight_day_forecast
+   filter = @daily[0..7].map do |day|
+     day.keep_if do |k,v|
+     ([:time,:summary, :icon, :precipProbability, :precipType, :temperatureHigh, :temperatureLow]).include?(k)
+   end
+ end
+  end
+
+
+  # def daily_weather
+  #   filter = @daily.keep_if  do |k,v|
+  #     (:time, :summary,:icon, :temperature, :humidity,:uvIndex,:visibility)
+  # end
+
+end

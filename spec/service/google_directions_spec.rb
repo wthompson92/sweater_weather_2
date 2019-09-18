@@ -8,7 +8,6 @@ describe 'GoogleDirectionsService' do
   end
 
   it "Can get a Lat & Long" do
-    binding.pry
     expect(@directions).not_to be_empty
   end
 end

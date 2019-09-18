@@ -2,26 +2,23 @@ require 'rails_helper'
 RSpec.describe "Forecast" do
   before :each do
     coords = ({:lat=>39.7392358, :lng=>-104.990251})
-    @forecast = Forecast.new(coords)
+    darksky = DarkSky.new(coords)
+    weather_data = darksky.forecast
+    @forecast = Forecast.new(weather_data)
   end
 
-  it "Can get forecast" do
-    expect(@forecast.forecast.keys).to match_array([:currently, :daily, :flags, :hourly, :latitude, :longitude, :minutely, :offset, :timezone])
+  it "Can get current weather forecast" do
+    expect(@forecast.current_weather.keys).to match_array([:time, :summary,:icon, :temperature, :humidity,:uvIndex,:visibility])
   end
 
-  it "can return current weather attributes" do
-    expect(@forecast.current_weather.keys).to match_array([:apparentTemperature, :cloudCover, :dewPoint, :humidity, :icon, :nearestStormBearing,:nearestStormDistance, :ozone, :precipIntensity, :precipProbability, :pressure, :summary, :temperature, :time, :uvIndex, :visibility, :windBearing, :windGust, :windSpeed])
-  end
-
-  it "can return minutely weather attributes" do
-    expect(@forecast.minutely_weather.first.keys).to eq([:time, :precipIntensity, :precipProbability])
-  end
-  #
   it "can return hourly weather attributes" do
-    expect(@forecast.hourly_weather.first.keys).to eq([:time, :summary, :icon, :precipIntensity, :precipProbability, :precipType, :temperature,:apparentTemperature, :dewPoint, :humidity, :pressure, :windSpeed, :windGust, :windBearing, :cloudCover, :uvIndex, :visibility, :ozone])
+    expect(@forecast.eight_hour_forecast.first.keys).to eq([:time, :summary, :icon])
+    expect(@forecast.eight_hour_forecast.count).to eq(8)
   end
 
-  # it "can return daily weather" do
-  #   expect(@forecast.hourly_weather).to eq(1)
-  # end
+  it "can return daily weather" do
+    expect(@forecast.eight_day_forecast.first.keys).to eq([:time, :summary, :icon, :precipProbability, :precipType, :temperatureHigh, :temperatureLow])
+    expect(@forecast.eight_day_forecast.count).to eq(8)
+
+  end
 end

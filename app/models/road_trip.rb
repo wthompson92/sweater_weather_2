@@ -1,8 +1,9 @@
 class RoadTrip
-
+  
   def initialize(origin, destination)
     @origin = origin
     @destination = destination
+    @id = 1
   end
 
   def duration
@@ -13,3 +14,4 @@ class RoadTrip
   def arrival_time
     duration[:value] + Time.now.to_i
   end
+end

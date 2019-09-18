@@ -15,6 +15,16 @@ class DarkSky
     get_json("/forecast/#{key}/#{@lat},#{@long},#{time}")
   end
 
+  def currently
+  forecast[:currently]
+  end
+
+  def weather_by_time(time)
+    key = ENV["DARK_SKY_KEY"]
+    get_json("/forecast/#{key}/#{@lat},#{@long},#{time}")
+  end
+
+
   private
 
     def conn
