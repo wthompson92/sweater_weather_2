@@ -1,7 +1,7 @@
 class Api::V1::GifsController < ApplicationController
 
   def index
-    render json: GifSerializer.new(Gif.new(search_params[:location]))
+    render json: GifSerializer.new(GifFacade.new(search_params[:location]))
   end
 
   private
@@ -9,4 +9,4 @@ class Api::V1::GifsController < ApplicationController
   def search_params
     params.permit(:location)
   end
-end 
+end

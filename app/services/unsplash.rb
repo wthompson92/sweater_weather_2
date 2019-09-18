@@ -8,6 +8,10 @@ class Unsplash
     get_json("/search/photos")
   end
 
+  def background_photo_url
+    search_photos[:results].first[:urls][:raw]
+  end
+
   private
   def conn
     conn = Faraday.new(url: "https://api.unsplash.com") do |faraday|

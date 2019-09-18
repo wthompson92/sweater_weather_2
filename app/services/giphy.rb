@@ -1,5 +1,4 @@
 class Giphy
-
   def initialize(summary)
     @summary = summary
   end

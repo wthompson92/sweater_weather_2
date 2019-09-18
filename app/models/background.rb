@@ -7,6 +7,6 @@ class Background
 
   def photo_url
     unsplash_connection = Unsplash.new(@location)
-    url = unsplash_connection.photo
+    url = unsplash_connection.background_photo_url
   end
 end
