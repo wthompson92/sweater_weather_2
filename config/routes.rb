@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#index'
   namespace :api do
     namespace :v1 do
@@ -6,7 +7,7 @@ Rails.application.routes.draw do
       get '/gifs', to: 'gifs#index'
       get '/backgrounds', to: 'backgrounds#index'
       post '/user', to: 'users#create'
-      post 'user_token' => 'user_token#create'
+      post '/sessions', to: 'sessions#create'
       post '/road_trip', to: 'road_trip#new'
     end
   end
