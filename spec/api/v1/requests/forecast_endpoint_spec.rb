@@ -14,24 +14,24 @@ describe 'Forecasts#Show API Endpoint' do
   it "JSON body response contains expected  attributes" do
     json_response = JSON.parse(response.body)["data"]['attributes']
 
-    expect(json_response.keys).to match_array(["id", "current_weather", "hourly", "daily"])
+    expect(json_response.keys).to match_array(["current", "daily", "hourly", "id"])
   end
 
   it "Current Weather JSON attributes" do
-    json_response = JSON.parse(response.body)["data"]['attributes']['current_weather']
+    json_response = JSON.parse(response.body)["data"]['attributes']['current']
 
-    expect(json_response.keys).to match_array(["humidity", "icon", "summary", "temperature", "time", "uv_index", "visibility"])
+    expect(json_response.keys).to match_array(['time', 'summary','icon', 'temperature','humidity','uvIndex','visibility'])
   end
 
   it "Hourly Weather JSON attributes" do
     json_response = JSON.parse(response.body)["data"]['attributes']['hourly']
 
-    expect(json_response.first.keys).to match_array( ["hour", "icon", "summary", "temperature", "time"])
+    expect(json_response.first.keys).to match_array(["icon", "summary", "time"])
   end
 
   it "Daily Weather JSON attributs" do
     json_response = JSON.parse(response.body)["data"]['attributes']['daily']
 
-    expect(json_response.first.keys).to match_array( ["day", "high", "icon", "low", "percip", "summary", "time"])
+    expect(json_response.first.keys).to match_array(["icon", "precipProbability", "precipType", "summary", "temperatureHigh", "temperatureLow", "time"])
   end
 end

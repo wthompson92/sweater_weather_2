@@ -1,6 +1,7 @@
 class Api::V1::RoadTripController < ApplicationController
 
   def new
+
     render json: RoadTripSerializer.new(RoadTripFacade.new(trip_params))
   end
 

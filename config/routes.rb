@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'user_token' => 'user_token#create'
   root 'home#index'
   namespace :api do
     namespace :v1 do
@@ -8,7 +9,6 @@ Rails.application.routes.draw do
       post '/user', to: 'users#create'
       post '/session', to: 'sessions#create'
       post '/road_trip', to: 'road_trip#new'
-
     end
   end
 end

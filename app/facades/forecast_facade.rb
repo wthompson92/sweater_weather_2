@@ -24,7 +24,7 @@ class ForecastFacade
   end
 
   def daily
-    location_weather.eight_hour_forecast
+    location_weather.eight_day_forecast
   end
 
 end

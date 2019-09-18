@@ -11,8 +11,8 @@ describe 'Gifs#Show API Endpoint' do
   end
 
   it "JSON body response contains expected  attributes" do
-    json_response = JSON.parse(response.body)["data"]['attributes']['images']
+    json_response = JSON.parse(response.body)["data"]['attributes']['daily_gifs']
     expect(json_response.first.keys).to match_array(["time", "url", 'summary'])
-    expect(json_response.count).to eq(5)
+    expect(json_response.count).to eq(8)
   end
 end
