@@ -15,6 +15,6 @@ describe 'Road Trip Facade' do
   end
 
   it "Returns weather for the destination at arrival time" do
-    expect(@rtf.destination_weather_at_arrival_time.keys).to match_array([:time, :summary, :icon, :precipIntensity, :precipProbability, :precipType, :temperature,:apparentTemperature, :dewPoint, :humidity, :pressure, :windSpeed, :windGust, :windBearing, :cloudCover, :uvIndex, :visibility, :ozone])
+    expect(@rtf.destination_weather_at_arrival_time.keys).to match_array([:apparentTemperature, :cloudCover, :dewPoint, :humidity, :icon, :ozone, :precipIntensity, :precipProbability, :precipType, :pressure, :summary, :temperature, :time, :uvIndex, :visibility, :windBearing, :windGust, :windSpeed])
   end
 end
